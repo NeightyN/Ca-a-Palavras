@@ -1,0 +1,35 @@
+ function pegaaPalavra(dir)
+%dir='c:/appocr/textos/img7.txt';
+disp(dir);
+arquivo = fopen('c:/appocr/palavraschave/pchave.txt', 'r'); %texto a ser analisado
+flag=0;
+splitstring = textscan(arquivo,'%s');
+spl = splitstring{1};
+
+fid = fopen (dir,  'r'); %palavras chave
+bu = textscan(fid, '%s');
+bua= bu{1};
+
+for j=1:length(bua)
+
+
+for i=1:length(spl)
+if(strcmp(spl{i},bua{j})==1)
+    fprintf('Palavra encontrada: ');
+fprintf(spl{i});
+fprintf('\n');
+flag=1;
+else
+    if(flag==0)
+    fprintf('...\n');
+    flag=1;
+    end
+end
+end
+
+end
+
+
+fclose(arquivo);
+fclose(fid);
+    end
